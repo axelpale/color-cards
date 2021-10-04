@@ -7,5 +7,16 @@ module.exports = {
     filename: 'main.js'
   },
   mode: 'production',
-  devtool: 'eval-source-map'
+  devtool: 'eval-source-map',
+  module: {
+    rules: [
+      {
+        test: /\.css$/,
+        use: [
+          { loader: 'style-loader' },
+          { loader: 'css-loader' }
+        ]
+      }
+    ]
+  }
 }

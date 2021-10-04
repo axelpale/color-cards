@@ -1,5 +1,6 @@
 // Rendering Parameters
 
+require('./style.css')
 const container = document.querySelector('#container')
 const cssrgb = require('./cssrgb')
 
