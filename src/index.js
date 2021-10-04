@@ -1,2 +1,4 @@
-const par = document.querySelector('p')
-par.innerHTML = 'Hello app, this is JS'
+// Rendering Parameters
+
+const container = document.querySelector('#container')
+const cssrgb = require('./cssrgb')
