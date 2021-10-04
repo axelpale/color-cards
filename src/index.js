@@ -32,3 +32,7 @@ const cards = colors.map((color) => {
 const body = cards.join('\n')
 
 container.innerHTML = body
+
+const title = document.querySelector('h1')
+const originalTitle = title.innerHTML
+title.innerHTML = originalTitle + ' (' + cards.length + ')'
