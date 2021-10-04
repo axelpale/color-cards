@@ -1,7 +1,8 @@
 {
-  "name": "web-app-template",
+  "name": "color-cards",
+  "private": true,
   "version": "1.0.0",
-  "description": "A project template for single-page apps built with webpack",
+  "description": "Create printable color palettes",
   "main": "src/index.js",
   "scripts": {
     "build": "webpack",
@@ -10,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/axelpale/web-app-template.git"
+    "url": "git+https://github.com/axelpale/color-cards.git"
   },
   "keywords": [
     "template",
@@ -23,9 +24,9 @@
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/axelpale/web-app-template/issues"
+    "url": "https://github.com/axelpale/color-cards/issues"
   },
-  "homepage": "https://github.com/axelpale/web-app-template",
+  "homepage": "https://github.com/axelpale/color-cards",
   "devDependencies": {
     "standard": "^16.0.4",
     "tape": "^5.3.1",
