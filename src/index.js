@@ -7,12 +7,12 @@ const rgb = require('./rgb')
 const colors = []
 
 // Generate colors
-for (let i = 0.0; i < 1.0; i += 0.1) {
-  for (let j = 0.0; j < i; j += 0.1) {
+for (let i = 128; i < 256; i += 8) {
+  for (let j = 0; j <= i / 2; j += 8) {
     colors.push({
-      r: j * 256,
-      g: j * 256,
-      b: i * 256
+      r: j,
+      g: j,
+      b: i
     })
   }
 }
