@@ -1,3 +1,12 @@
+.color {
+  display: inline-block;
+}
+
+.color-box {
+  width: 8rem;
+  height: 8rem;
+}
+
 .color-label {
   font-family: monospace;
   margin-bottom: 0.62rem;

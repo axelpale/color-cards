@@ -19,14 +19,13 @@ for (let i = 0.0; i < 1.0; i += 0.1) {
 
 // Generate cards
 const cards = colors.map((color) => {
-  return '<div style="' +
-    'background-color: ' + rgb.css(color) + ';' +
-    'width: 10em;' +
-    'height: 10em;' +
-    '"></div>' +
+  return '<div class="color">' +
+    '<div class="color-box" ' +
+    'style="background-color: ' + rgb.css(color) + ';">' +
+    '</div>' +
     '<div class="color-label">' +
     rgb.label(color) +
-    '</div>'
+    '</div></div>'
 })
 
 const body = cards.join('\n')
