@@ -2,8 +2,7 @@
 
 require('./style.css')
 const container = document.querySelector('#container')
-const cssrgb = require('./cssrgb')
-const colorLabel = require('./colorLabel')
+const rgb = require('./rgb')
 
 const colors = []
 
@@ -21,12 +20,12 @@ for (let i = 0.0; i < 1.0; i += 0.1) {
 // Generate cards
 const cards = colors.map((color) => {
   return '<div style="' +
-    'background-color: ' + cssrgb(color) + ';' +
+    'background-color: ' + rgb.css(color) + ';' +
     'width: 10em;' +
     'height: 10em;' +
     '"></div>' +
     '<div class="color-label">' +
-    colorLabel(color) +
+    rgb.label(color) +
     '</div>'
 })
 
