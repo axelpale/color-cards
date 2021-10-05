@@ -19,6 +19,13 @@ exports.rgb = (rgb) => {
     Math.floor(rgb.b)
 }
 
+exports.cielab = (lab) => {
+  return 'LAB ' +
+    Math.floor(lab.l) + ' ' +
+    Math.floor(lab.a) + ' ' +
+    Math.floor(lab.b)
+}
+
 exports.cielch = (lch) => {
   return 'LCH ' +
     Math.floor(lch.l) + ' ' +
