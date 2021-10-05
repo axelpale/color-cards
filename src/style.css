@@ -1,7 +1,7 @@
 .color {
   display: inline-block;
-  margin-bottom: 0.62rem;
-  margin-right: 0.62rem;
+  margin-bottom: 1rem;
+  margin-right: 1rem;
 }
 
 .color-box {
@@ -16,4 +16,11 @@
 
 .non-displayable .color-label {
   color: gray;
+}
+
+.cardrow {
+}
+
+.cardsheet {
+  margin-bottom: 5rem;
 }
