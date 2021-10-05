@@ -3,18 +3,19 @@
 require('./style.css')
 const container = document.querySelector('#container')
 const rgb = require('./rgb')
+const d3 = require('d3-color')
 
 const colors = []
 
 // Generate colors
-for (let i = 128; i < 256; i += 8) {
-  for (let j = 0; j <= i / 2; j += 8) {
-    colors.push({
-      r: j,
-      g: j,
-      b: i
-    })
-  }
+for (let i = 0; i < 360; i += 6) {
+  const c = d3.lch(75, 50, i)
+  const rgb = c.rgb()
+  colors.push({
+    r: rgb.r,
+    g: rgb.g,
+    b: rgb.b
+  })
 }
 
 // Generate cards
