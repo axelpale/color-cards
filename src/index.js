@@ -6,6 +6,22 @@ const d3 = require('d3-color')
 const label = require('./label')
 
 const colors = []
+const closeness = (c, d) => {
+  // Parameters
+  //   c
+  //     color
+  //   d
+  //     color
+  //
+  // Return
+  //   distance
+  //     number
+  //
+  const da = c.a - d.a
+  const db = c.b - d.b
+  const d2 = da * da + db * db
+  return Math.sqrt(d2)
+}
 
 // Generate colors
 for (let h = 218; h < 288; h += 6) {
