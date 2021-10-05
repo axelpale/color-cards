@@ -2,30 +2,36 @@
 
 require('./style.css')
 const container = document.querySelector('#container')
-const rgb = require('./rgb')
 const d3 = require('d3-color')
+const label = require('./label')
 
 const colors = []
 
 // Generate colors
-for (let i = 0; i < 360; i += 6) {
-  const c = d3.lch(75, 50, i)
-  const rgb = c.rgb()
-  colors.push({
-    r: rgb.r,
-    g: rgb.g,
-    b: rgb.b
-  })
+for (let h = 218; h < 288; h += 6) {
+  for (let l = 40; l <= 70; l += 10) {
+    let c = 40
+    const color = d3.lch(l, c, h)
+    colors.push(color)
+  }
 }
 
 // Generate cards
 const cards = colors.map((color) => {
-  return '<div class="color">' +
+  const rgb = color.rgb()
+  const displayable = color.displayable() ? 'displayable' : 'non-displayable'
+  return '<div class="color ' + displayable + '">' +
     '<div class="color-box" ' +
-    'style="background-color: ' + rgb.css(color) + ';">' +
+    'style="background-color: ' + rgb.formatRgb() + ';">' +
     '</div>' +
     '<div class="color-label">' +
-    rgb.label(color) +
+    label.rgb(rgb) +
+    '</div>' +
+    '<div class="color-label">' +
+    label.hex(rgb) +
+    '</div>' +
+    '<div class="color-label">' +
+    label.cielch(color) +
     '</div></div>'
 })
 

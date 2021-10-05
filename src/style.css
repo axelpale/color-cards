@@ -1,5 +1,7 @@
 .color {
   display: inline-block;
+  margin-bottom: 0.62rem;
+  margin-right: 0.62rem;
 }
 
 .color-box {
@@ -9,5 +11,9 @@
 
 .color-label {
   font-family: monospace;
-  margin-bottom: 0.62rem;
+  text-transform: uppercase;
+}
+
+.non-displayable .color-label {
+  color: gray;
 }
