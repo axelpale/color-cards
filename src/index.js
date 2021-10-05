@@ -5,7 +5,6 @@ const container = document.querySelector('#container')
 const d3 = require('d3-color')
 const label = require('./label')
 
-const colors = []
 const closeness = (c, d) => {
   // Parameters
   //   c
@@ -24,37 +23,49 @@ const closeness = (c, d) => {
 }
 
 // Generate colors
-for (let h = 218; h < 288; h += 6) {
-  for (let l = 40; l <= 70; l += 10) {
-    let c = 40
-    const color = d3.lch(l, c, h)
-    colors.push(color)
+const matrices = []
+for (let l = 40; l <= 80; l += 20) {
+  const rows = []
+  for (let a = -60; a <= 0; a += 10) {
+    const row = []
+    for (let b = -60; b <= 0; b += 10) {
+      const color = d3.lab(l, a, b)
+      if (color.displayable()) {
+        row.push(color)
+      }
+    }
+    rows.push(row)
   }
+  matrices.push(rows)
 }
 
 // Generate cards
-const cards = colors.map((color) => {
-  const rgb = color.rgb()
-  const displayable = color.displayable() ? 'displayable' : 'non-displayable'
-  return '<div class="color ' + displayable + '">' +
-    '<div class="color-box" ' +
-    'style="background-color: ' + rgb.formatRgb() + ';">' +
-    '</div>' +
-    '<div class="color-label">' +
-    label.rgb(rgb) +
-    '</div>' +
-    '<div class="color-label">' +
-    label.hex(rgb) +
-    '</div>' +
-    '<div class="color-label">' +
-    label.cielch(color) +
-    '</div></div>'
+const cardSheets = matrices.map((rows) => {
+  const cardRows = rows.map(row => {
+    const cards = row.map((color) => {
+      const rgb = color.rgb()
+      const card = '<div class="card color displayable">' +
+        '<div class="color-box" ' +
+        'style="background-color: ' + rgb.formatRgb() + ';">' +
+        '</div>' +
+        '<div class="color-label">' +
+        label.rgb(rgb) +
+        '</div>' +
+        '<div class="color-label">' +
+        label.hex(rgb) +
+        '</div>' +
+        '<div class="color-label">' +
+        label.cielab(color) +
+        '</div></div>'
+      return card
+    })
+    return '<div class="cardrow">' + cards.join('\n') + '</div>'
+  })
+  return '<div class="cardsheet">' + cardRows.join('\n') + '</div>'
 })
 
-const body = cards.join('\n')
-
-container.innerHTML = body
+container.innerHTML = cardSheets.join('\n')
 
 const title = document.querySelector('h1')
 const originalTitle = title.innerHTML
-title.innerHTML = originalTitle + ' (' + cards.length + ')'
+title.innerHTML = originalTitle + ' (' + cardSheets.length + ')'
