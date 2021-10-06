@@ -22,46 +22,67 @@ const closeness = (c, d) => {
   return Math.sqrt(d2)
 }
 
-// Generate colors
-const matrices = []
-for (let l = 40; l <= 80; l += 20) {
-  const rows = []
-  for (let a = -60; a <= 0; a += 10) {
-    const row = []
-    for (let b = -60; b <= 0; b += 10) {
-      const color = d3.lab(l, a, b)
-      if (color.displayable()) {
-        row.push(color)
-      }
-    }
-    rows.push(row)
+// Color limits
+const limits = [
+  {
+    lmin: 80,
+    lmax: 80,
+    lstep: 5,
+    amin: -40,
+    amax: -10,
+    astep: 5,
+    bmin: -40,
+    bmax: -10,
+    bstep: 5
   }
-  matrices.push(rows)
-}
+]
+
+// Generate colors
+const sheets = limits.map((lim) => {
+  const groups = []
+  for (let l = lim.lmin; l <= lim.lmax; l += lim.lstep) {
+    const rows = []
+    for (let a = lim.amin; a <= lim.amax; a += lim.astep) {
+      const row = []
+      for (let b = lim.bmin; b <= lim.bmax; b += lim.bstep) {
+        const color = d3.lab(l, a, b)
+        if (color.displayable()) {
+          row.push(color)
+        }
+      }
+      rows.push(row)
+    }
+    groups.push(rows)
+  }
+  return groups
+})
 
 // Generate cards
-const cardSheets = matrices.map((rows) => {
-  const cardRows = rows.map(row => {
-    const cards = row.map((color) => {
-      const rgb = color.rgb()
-      const card = '<div class="card color displayable">' +
-        '<div class="color-box" ' +
-        'style="background-color: ' + rgb.formatRgb() + ';">' +
-        '</div>' +
-        '<div class="color-label">' +
-        label.rgb(rgb) +
-        '</div>' +
-        '<div class="color-label">' +
-        label.hex(rgb) +
-        '</div>' +
-        '<div class="color-label">' +
-        label.cielab(color) +
-        '</div></div>'
-      return card
+const cardSheets = sheets.map((groups) => {
+  const cardGroups = groups.map((rows) => {
+    const cardRows = rows.map(row => {
+      const cards = row.map((color) => {
+        const rgb = color.rgb()
+        const card = '<div class="card color displayable">' +
+          '<div class="color-box" ' +
+          'style="background-color: ' + rgb.formatRgb() + ';">' +
+          '</div>' +
+          '<div class="color-label">' +
+          label.rgb(rgb) +
+          '</div>' +
+          '<div class="color-label">' +
+          label.hex(rgb) +
+          '</div>' +
+          '<div class="color-label">' +
+          label.cielab(color) +
+          '</div></div>'
+        return card
+      })
+      return '<div class="cardrow">' + cards.join('\n') + '</div>'
     })
-    return '<div class="cardrow">' + cards.join('\n') + '</div>'
+    return '<div class="cardgroup">' + cardRows.join('\n') + '</div>'
   })
-  return '<div class="cardsheet">' + cardRows.join('\n') + '</div>'
+  return '<div class="cardsheet">' + cardGroups.join('\n') + '</div>'
 })
 
 container.innerHTML = cardSheets.join('\n')
