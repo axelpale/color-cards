@@ -25,14 +25,102 @@ const closeness = (c, d) => {
 // Color limits
 const sheets = [
   {
+    lmin: 50,
+    lmax: 50,
+    lstep: 5,
+    amin: 0,
+    amax: 35,
+    astep: 5,
+    bmin: -75,
+    bmax: -55,
+    bstep: 5
+  },
+  {
+    lmin: 60,
+    lmax: 60,
+    lstep: 5,
+    amin: -15,
+    amax: 20,
+    astep: 5,
+    bmin: -60,
+    bmax: -40,
+    bstep: 5
+  },
+  {
+    lmin: 65,
+    lmax: 65,
+    lstep: 5,
+    amin: -20,
+    amax: 15,
+    astep: 5,
+    bmin: -50,
+    bmax: -30,
+    bstep: 5
+  },
+  {
+    lmin: 70,
+    lmax: 70,
+    lstep: 5,
+    amin: -30,
+    amax: 5,
+    astep: 5,
+    bmin: -45,
+    bmax: -25,
+    bstep: 5
+  },
+  {
+    lmin: 75,
+    lmax: 75,
+    lstep: 5,
+    amin: -35,
+    amax: -35 + 35,
+    astep: 5,
+    bmin: -35,
+    bmax: -15,
+    bstep: 5
+  },
+  {
     lmin: 80,
     lmax: 80,
     lstep: 5,
     amin: -40,
-    amax: -10,
+    amax: -5,
     astep: 5,
-    bmin: -40,
+    bmin: -30,
     bmax: -10,
+    bstep: 5
+  },
+  {
+    lmin: 85,
+    lmax: 85,
+    lstep: 5,
+    amin: -50,
+    amax: -15,
+    astep: 5,
+    bmin: -20,
+    bmax: 0,
+    bstep: 5
+  },
+  {
+    lmin: 90,
+    lmax: 90,
+    lstep: 5,
+    amin: -55,
+    amax: -20,
+    astep: 5,
+    bmin: -15,
+    bmax: 5,
+    bstep: 5
+  },
+  {
+    lmin: 90,
+    lmax: 90,
+    lstep: 5,
+    amin: -15,
+    amax: 20,
+    astep: 5,
+    bmin: -15,
+    bmax: 5,
     bstep: 5
   }
 ]
