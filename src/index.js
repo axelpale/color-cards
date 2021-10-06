@@ -23,7 +23,7 @@ const closeness = (c, d) => {
 }
 
 // Color limits
-const limits = [
+const sheets = [
   {
     lmin: 80,
     lmax: 80,
@@ -38,7 +38,7 @@ const limits = [
 ]
 
 // Generate colors
-const sheets = limits.map((lim) => {
+const colorSheets = sheets.map((lim) => {
   const groups = []
   for (let l = lim.lmin; l <= lim.lmax; l += lim.lstep) {
     const rows = []
@@ -46,9 +46,7 @@ const sheets = limits.map((lim) => {
       const row = []
       for (let b = lim.bmin; b <= lim.bmax; b += lim.bstep) {
         const color = d3.lab(l, a, b)
-        if (color.displayable()) {
-          row.push(color)
-        }
+        row.push(color)
       }
       rows.push(row)
     }
@@ -58,10 +56,13 @@ const sheets = limits.map((lim) => {
 })
 
 // Generate cards
-const cardSheets = sheets.map((groups) => {
+const sheetsHtml = colorSheets.map((groups) => {
   const cardGroups = groups.map((rows) => {
     const cardRows = rows.map(row => {
       const cards = row.map((color) => {
+        if (!color.displayable()) {
+          return '<div class="card color non-displayable color-box"></div>'
+        }
         const rgb = color.rgb()
         const card = '<div class="card color displayable">' +
           '<div class="color-box" ' +
@@ -85,7 +86,7 @@ const cardSheets = sheets.map((groups) => {
   return '<div class="cardsheet">' + cardGroups.join('\n') + '</div>'
 })
 
-container.innerHTML = cardSheets.join('\n')
+container.innerHTML = sheetsHtml.join('\n')
 
 const originalTitle = document.title
-document.title = originalTitle + ' (' + cardSheets.length + ')'
+document.title = originalTitle + ' (' + colorSheets.length + ')'
