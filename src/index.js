@@ -66,6 +66,5 @@ const cardSheets = matrices.map((rows) => {
 
 container.innerHTML = cardSheets.join('\n')
 
-const title = document.querySelector('h1')
-const originalTitle = title.innerHTML
-title.innerHTML = originalTitle + ' (' + cardSheets.length + ')'
+const originalTitle = document.title
+document.title = originalTitle + ' (' + cardSheets.length + ')'
